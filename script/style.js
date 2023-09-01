@@ -1,22 +1,3 @@
-const handleCategory = async() =>{
-    
-    const response = await fetch('https://openapi.programming-hero.com/api/videos/categories');
-    const data = await response.json();
-    // tab container
-    const tabContainer = document.getElementById('tab-container')
-    data.data.forEach((element) => {
-        const div = document.createElement('div')
-        div.innerHTML = `
-        <a onclick = "loadId('${element.category_id}')"class="tab">${element.category}</a> 
-        
-        `
-        tabContainer.appendChild(div)
-        
-    });
-    // console.log(data.data);
-};
-
-// Id
 const loadId = async(category_id) => {
   const response = await fetch(`https://openapi.programming-hero.com/api/videos/category/${category_id}`);
   const data = await response.json();
@@ -24,6 +5,7 @@ const loadId = async(category_id) => {
   console.log(data);
   // card-container section
   const cardContainer = document.getElementById('card-container')
+  cardContainer.innerHTML= "";
   newData.forEach((name) =>{
     console.log(name);
     const div = document.createElement('div')
@@ -34,6 +16,7 @@ const loadId = async(category_id) => {
     </figure>
     <div class="card-body items-center text-center">
     <h2 class="card-title">${name.title}</h2>
+    <img src="${name.authors?.profile_picture}/>
     
     <p>${name.others.views}</p>
     <div class="card-actions">
@@ -43,13 +26,3 @@ const loadId = async(category_id) => {
   cardContainer.appendChild(div);
     });
 };
-console.log(loadId(1000));
-
-
-
-
-
-
-
-
-handleCategory()

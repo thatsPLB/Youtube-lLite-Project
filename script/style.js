@@ -62,6 +62,7 @@ const loadId = async (category_id, s = false) => {
     <img src="${name.authors?.profile_picture}/>
     
     <p>${name.others.views}</p>
+    <p>${name.others.posted_date}</p>
     <div class="card-actions">
     </div>
   </div>
@@ -69,5 +70,4 @@ const loadId = async (category_id, s = false) => {
     cardContainer.appendChild(div);
   });
 };
-
 loadId();
